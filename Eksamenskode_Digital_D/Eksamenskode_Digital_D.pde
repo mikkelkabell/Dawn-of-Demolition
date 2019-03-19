@@ -5,6 +5,7 @@ PImage background;
 int stage;
 PFont title;
 String gameState;
+Men myMen;
 
 public void setup() {
   gameState = "START";
@@ -14,6 +15,8 @@ public void setup() {
   startscreen = loadImage("StartB.jpg");
   image(startscreen, 0, 0, 750, 850);
   title = createFont("Lobster.otf", 32);
+  myMen = new Men(random(140, 590), 0, 1, 2);
+  engine.add(myMen);
 }
 
 public void draw() {
@@ -53,7 +56,11 @@ void inGame () {
 
   background = loadImage("Bane.png");
   image(background, 0, 0, 750, 850);
-
+  if (keyPressed) {
+    if (key =='f' || key == 'F') {
+      engine.add(myMen);
+    }
+  }
 
   int i = engine.size()-1;
   while (i >=0) {
