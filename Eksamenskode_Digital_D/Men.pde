@@ -14,7 +14,7 @@ class Men extends GameObject {
   
   void show() {
     fill(4,148,247);
-    rect(x, y, 20, 20);
+    rect(mouseX, mouseY, 20, 20);
   }
   
   void act() {

@@ -1,6 +1,6 @@
 abstract class GameObject { //en katergori af ting
 
-  float x, y, dx, dy;
+  float x, y, dx, dy, hp;
   
   GameObject() {
   }
