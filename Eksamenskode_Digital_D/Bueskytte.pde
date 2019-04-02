@@ -11,6 +11,9 @@ class Bueskytte extends Men{
     
 
   }
+  void act () {
+  
+  }
   /* float th, cd; // Threshold, Cooldown
   
 

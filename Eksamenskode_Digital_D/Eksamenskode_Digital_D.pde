@@ -1,4 +1,3 @@
-import g4p_controls.*;
 ArrayList<GameObject> engine;
 PImage startscreen;
 PImage background;
@@ -72,7 +71,6 @@ void inGame () {
       engine.add(new Enemy(random(140, 590), 850, 1, 1));
     }
   }
-
 
 
 
