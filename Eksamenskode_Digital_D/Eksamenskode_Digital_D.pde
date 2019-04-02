@@ -1,20 +1,27 @@
 ArrayList<GameObject> engine;
-PImage startscreen;
-PImage background;
+PImage startscreen, background, Sword, Bow, Shield;
 int stage;
 PFont title;
 String gameState;
 Men myMen;
 Enemy myEnemy;
 boolean pressed = false;
+boolean imageOver = false;
+color Highlight;
+float x, y;
+long nowpress, lastpress, cooldown=5000;
 
 public void setup() {
   size(750, 850, P2D);
   background = loadImage("Bane.png");
+  Sword = loadImage("Sword.png");
+  Bow = loadImage("Bow.png");
+  Shield = loadImage("Shield.png");
   frameRate(60);
   gameState = "START";
   engine = new ArrayList<GameObject>(10000); //mængde af memory
   stage = 1;
+  Highlight = color(204);
   startscreen = loadImage("StartB.jpg");
   image(startscreen, 0, 0, 750, 850);
   title = createFont("Lobster.otf", 32);
@@ -55,35 +62,43 @@ void homeScreen() {
   }
 }
 
-
-
 void inGame () {
-
-  boolean pressed = false;
+  // boolean pressed = false;
   image(background, 0, 0, 750, 850);
+  image(Sword, 650, 650, 40, 80);
+  image(Bow, 650, 570, 40, 40);
+  image(Shield, 650, 490, 40, 38);
 
-  if (keyPressed) {
-    if (key =='f' || key == 'F' && pressed == false) {
+  if (mousePressed) {
+   if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) {
       engine.add(new Men(random(140, 590), 0, 1, 1));
-      pressed = true;
-    }
-    if (key =='d' || key == 'D') {
-      engine.add(new Enemy(random(140, 590), 850, 1, 1));
-    }
+  }
   }
 
+  
+  /*
+  if (keyPressed) {
+   if (key =='f' || key == 'F' && pressed == false) {
+   engine.add(new Men(random(140, 590), 0, 1, 1));
+   pressed = true;
+   }
+   if (key =='d' || key == 'D') {
+   engine.add(new Enemy(random(140, 590), 850, 1, 1));
+   }
+   }
+   */
 
 
-int i = engine.size()-1;
-while (i >=0) {
-  GameObject obj = engine.get(i);
-  obj.show();
-  obj.act();
-  if (obj.hasDied()) {
-    engine.remove(i);
+  int i = engine.size()-1;
+  while (i >=0) {
+    GameObject obj = engine.get(i);
+    obj.show();
+    obj.act();
+    if (obj.hasDied()) {
+      engine.remove(i);
+    }
+    i--;
   }
-  i--;
-}
 }
 
 void wonGame () {
