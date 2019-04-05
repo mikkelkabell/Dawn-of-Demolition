@@ -1,5 +1,6 @@
 class Men extends GameObject {
 
+
   float angle;
   float dX, dY;
   float x;
@@ -17,8 +18,6 @@ class Men extends GameObject {
   }
 
   void show() {
-    fill(4, 148, 247);
-    rect(x, y, 20, 20);
   }
 
   void act() {
@@ -32,8 +31,8 @@ class Men extends GameObject {
       fdY = sin(angle) * 2;
     }
     if (incX == x && incY == y) {
-      fdX = 0;
-      fdY = 0;
+      x = 0;
+      y = 0;
     }
   }
 }

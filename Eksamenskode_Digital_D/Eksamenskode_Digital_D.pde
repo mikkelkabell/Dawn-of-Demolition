@@ -7,7 +7,7 @@ Men myMen;
 Enemy myEnemy;
 boolean pressed = false;
 float x, y;
-long nowpress, lastpress, cooldown=5000;
+
 
 public void setup() {
   size(750, 850, P2D);
@@ -67,12 +67,12 @@ void inGame () {
   image(Shield, 650, 490, 40, 38);
 
   if (mousePressed) {
-   if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) {
+    if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) {
       engine.add(new Men(random(140, 590), 0, 1, 1));
-  }
+    }
   }
 
-  
+
   /*
   if (keyPressed) {
    if (key =='f' || key == 'F' && pressed == false) {
