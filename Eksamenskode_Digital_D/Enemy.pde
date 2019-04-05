@@ -1,11 +1,12 @@
 class Enemy extends Men {
 
-  float angle; 
   float enemydX, enemydY;
-  float incX, incY = 0;
+  
   Enemy(float x, float y, float vX, float vY) {
     super(x, y, vX, vY);
     hp = 10;
+    enemydX = random(3);
+    enemydY = 2;
   }
 
   void show () {
@@ -14,9 +15,10 @@ class Enemy extends Men {
   }
 
   void act () {
-    x = x + enemydX;
-    y = y + enemydY;
-    if (mousePressed) {
+    x = x - enemydX;
+    y = y - enemydY;
+    
+ /*   if (mousePressed) {
       incX = mouseX;
       incY = mouseY;
       angle = atan2(incY-y, incX-x);
@@ -27,6 +29,7 @@ class Enemy extends Men {
       enemydX = 0;
       enemydY = 0;
     }
+    */
   }
 
   boolean hasDied () {

@@ -6,8 +6,6 @@ String gameState;
 Men myMen;
 Enemy myEnemy;
 boolean pressed = false;
-boolean imageOver = false;
-color Highlight;
 float x, y;
 long nowpress, lastpress, cooldown=5000;
 
@@ -21,7 +19,6 @@ public void setup() {
   gameState = "START";
   engine = new ArrayList<GameObject>(10000); //mængde af memory
   stage = 1;
-  Highlight = color(204);
   startscreen = loadImage("StartB.jpg");
   image(startscreen, 0, 0, 750, 850);
   title = createFont("Lobster.otf", 32);
