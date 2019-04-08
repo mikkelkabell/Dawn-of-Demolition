@@ -6,7 +6,8 @@ String gameState;
 Men myMen;
 Enemy myEnemy;
 boolean pressed = false;
-float x, y;
+float x, y, lasttimecheck, timeinterval;
+
 
 
 public void setup() {
@@ -27,10 +28,12 @@ public void setup() {
   startscreen = loadImage("StartB.jpg");
   image(startscreen, 0, 0, 750, 850);
   title = createFont("Lobster.otf", 32);
-  myMen = new Men(random(140, 590), 0, random(-3, 3), 2);
-  engine.add(myMen);
   myEnemy = new Enemy(random(140, 590), 400, random(-4, 4), 1);
   engine.add(myEnemy);
+  lasttimecheck = millis();
+  timeinterval = 3000; // 3 sekunder
+  
+  
 }
 
 public void draw() {
@@ -73,7 +76,13 @@ void inGame () {
 
   if (mousePressed) {
     if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) {
-      engine.add(new Men(random(140, 590), 0, 1, 1));
+      engine.add(new Soldier(random(140, 590), 0, 1, 1));
+    }
+  if (mouseX>650 && mouseX<690 && mouseY>570 && mouseY<610) {
+      engine.add(new Archer(random(140, 590), 0, 1, 1));
+    }
+  if (mouseX>650 && mouseX<690 && mouseY>490 && mouseY<530) {
+      engine.add(new Knight(random(140, 590), 0, 1, 1));
     }
   }
 
@@ -120,6 +129,6 @@ void loseGame () {
   image(GOver, 0, 0, 750, 850);
   
   if (mousePressed == true) {
-      gameState = "inGame";
+      gameState = "HomeScreen";
   }
 }
