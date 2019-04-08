@@ -1,5 +1,5 @@
 ArrayList<GameObject> engine;
-PImage startscreen, background, Sword, Bow, Shield;
+PImage startscreen, background, Sword, Bow, Shield, ShieldSH, BowS, SwordSW, GOver, YouWin;
 int stage;
 PFont title;
 String gameState;
@@ -12,9 +12,14 @@ float x, y;
 public void setup() {
   size(750, 850, P2D);
   background = loadImage("Bane.png");
+  GOver = loadImage("GOver.jpg");
+  YouWin = loadImage("YouWin.jpg");
   Sword = loadImage("Sword.png");
   Bow = loadImage("Bow.png");
-  Shield = loadImage("Shield.png");
+  Shield = loadImage("Shield.png");  
+  SwordSW = loadImage("SwordSW.png");
+  BowS = loadImage("BowS.png");
+  ShieldSH = loadImage("ShieldSH.png");
   frameRate(60);
   gameState = "START";
   engine = new ArrayList<GameObject>(10000); //mængde af memory
@@ -96,10 +101,25 @@ void inGame () {
     }
     i--;
   }
+ /*if (Enemy.hp == 0) {
+    gameState = "wonGame";
+  } else if (Men.hp == 0) {
+    gameState = "loseGame";
+  }*/
 }
 
 void wonGame () {
+  image(YouWin, 0, 0, 750, 850);
+  
+  if (mousePressed == true) {
+      gameState = "HomeScreen";
+  }
 }
 
 void loseGame () {
+  image(GOver, 0, 0, 750, 850);
+  
+  if (mousePressed == true) {
+      gameState = "inGame";
+  }
 }

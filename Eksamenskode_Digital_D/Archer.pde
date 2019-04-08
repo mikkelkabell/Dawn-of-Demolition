@@ -1,18 +1,18 @@
 class Archer extends Men {
 
-  PImage BowS;
+
  // float th, cd; // Threshold, Cooldown
 
   Archer(float incX, float incY, float vX, float vY) {
     super(incX, incY, vX, vY);
-    BowS = loadImage("BowS.png");
     hp = 7;
   }
 
   void show() {
-    image(BowS, x, y, 20, 20);
+    rect(x,y,20,20);
   }
-
+ void act() {
+    image(BowS, x, y, 20, 20);
 
    
    /*
@@ -30,4 +30,5 @@ class Archer extends Men {
    }
    }
    */
+}
 }
