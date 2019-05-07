@@ -1,14 +1,13 @@
 ArrayList<GameObject> engine;
-PImage startscreen, background, Sword, Bow, Shield, ShieldSH, BowS, SwordSW, GOver, YouWin;
+PImage startscreen, background, Sword, Bow, Shield, ShieldSH, BowS, SwordSW, GOver, YouWin, EnemyS;
 int stage;
 PFont title;
 String gameState;
 Men myMen;
 Enemy myEnemy;
+//Archer myArcher ;//= new Archer();
 boolean pressed = false;
-float x, y, lasttimecheck, timeinterval;
-
-
+float x, y, th, cd;
 
 public void setup() {
   size(750, 850, P2D);
@@ -21,6 +20,7 @@ public void setup() {
   SwordSW = loadImage("SwordSW.png");
   BowS = loadImage("BowS.png");
   ShieldSH = loadImage("ShieldSH.png");
+  EnemyS = loadImage("EnemyS.png");
   frameRate(60);
   gameState = "START";
   engine = new ArrayList<GameObject>(10000); //mængde af memory
@@ -28,11 +28,11 @@ public void setup() {
   startscreen = loadImage("StartB.jpg");
   image(startscreen, 0, 0, 750, 850);
   title = createFont("Lobster.otf", 32);
-  myEnemy = new Enemy(random(140, 590), 400, random(-4, 4), 1);
+  myEnemy = new Enemy(random(140, 590), 400);
   engine.add(myEnemy);
-  lasttimecheck = millis();
-  timeinterval = 3000; // 3 sekunder
-  
+  engine.add(new EnemyProducer());
+  //engine.add(Bullet);
+  //engine.add(new Bullet());
   
 }
 
@@ -73,33 +73,20 @@ void inGame () {
   image(Sword, 650, 650, 40, 80);
   image(Bow, 650, 570, 40, 40);
   image(Shield, 650, 490, 40, 38);
-
   if (mousePressed) {
-    if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) {
+    if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) { // (cd == th) {
       engine.add(new Soldier(random(140, 590), 0, 1, 1));
+      cd = 0;
     }
   if (mouseX>650 && mouseX<690 && mouseY>570 && mouseY<610) {
-      engine.add(new Archer(random(140, 590), 0, 1, 1));
+      engine.add(new Archer(random(140, 590), 0,1,1));
+      cd = 0;
     }
   if (mouseX>650 && mouseX<690 && mouseY>490 && mouseY<530) {
       engine.add(new Knight(random(140, 590), 0, 1, 1));
+      cd = 0;
     }
   }
-
-
-  /*
-  if (keyPressed) {
-   if (key =='f' || key == 'F' && pressed == false) {
-   engine.add(new Men(random(140, 590), 0, 1, 1));
-   pressed = true;
-   }
-   if (key =='d' || key == 'D') {
-   engine.add(new Enemy(random(140, 590), 850, 1, 1));
-   }
-   }
-   */
-
-
   int i = engine.size()-1;
   while (i >=0) {
     GameObject obj = engine.get(i);

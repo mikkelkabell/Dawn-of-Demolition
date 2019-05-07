@@ -1,35 +1,20 @@
-class Enemy extends Men {
+class Enemy extends GameObject {
 
-  float enemydX, enemydY;
 
-  Enemy(float x, float y, float vX, float vY) {
-    super(x, y, vX, vY);
+
+  Enemy(float incX, float incY) {
     hp = 10;
-    enemydX = random(3);
-    enemydY = 2;
+    x = incX;
+    y = incY;
+    dx = 0;
+    dy = -1;
   }
-
   void show () {
-    fill(128, 0, 0);
-    rect(x, y, 22, 22);
+    image(EnemyS, x, y, 40, 40);
   }
-
   void act () {
-    x = x - enemydX;
-    y = y - enemydY;
-
-    /*   if (mousePressed) {
-     incX = mouseX;
-     incY = mouseY;
-     angle = atan2(incY-y, incX-x);
-     enemydX = cos(angle) * 2;
-     enemydY = sin(angle) * 2;
-     }
-     if (incX == x && incY == y) {
-     enemydX = 0;
-     enemydY = 0;
-     }
-     */
+    x = x + dx;
+    y = y + dy;
   }
 
   boolean hasDied () {

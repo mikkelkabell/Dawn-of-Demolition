@@ -8,7 +8,7 @@ class Archer extends Men {
   float vY;  
   float incX, incY = 0;
   float fdX, fdY;
- // float th, cd; // Threshold, Cooldown
+  // float th, cd; // Threshold, Cooldown
 
   Archer(float incX, float incY, float vX, float vY) {
     super(incX, incY, vX, vY);
@@ -16,9 +16,9 @@ class Archer extends Men {
   }
 
   void show() {
-    image(BowS, x, y, 20, 20);
+    image(BowS,x, y, 20, 20);
   }
- void act() {
+  void act() {
     x = x + fdX;
     y = y + fdY;
     if (mousePressed) {
@@ -32,23 +32,11 @@ class Archer extends Men {
       x = 0;
       y = 0;
     }
-    
-
-   
-   /*
-   void shoot() {
-   if (cd == th) {
-   engine.add(new Bullet());
-   cd = 0;
-   }
-   }
-   
-   void recharge() {
-   if (cd < th) {
-   cd++;
-   }
-   }
-   }
-   */
-}
+   if (dist(myEnemy.x,myEnemy.y,x,y)<150) {
+     engine.add(new Bullet(this));
+    }
+  }
+  boolean hasDied () {
+    return y > height || x > width || y < -20 || x < -20;
+  }
 }

@@ -8,7 +8,7 @@ class Soldier extends Men {
   float vY;  
   float incX, incY = 0;
   float fdX, fdY;
-  
+
   Soldier(float incX, float incY, float vX, float vY) {
     super(incX, incY, vX, vY);
     hp = 10;
@@ -17,7 +17,7 @@ class Soldier extends Men {
   void show() {
     image(SwordSW, x, y, 15, 30);
   }
-   void act() {
+  void act() {
     x = x + fdX;
     y = y + fdY;
     if (mousePressed) {
@@ -31,5 +31,8 @@ class Soldier extends Men {
       x = 0;
       y = 0;
     }
-}
+  }
+  boolean hasDied () {
+    return y > height || x > width || y < -20 || x < -20;
+  }
 }

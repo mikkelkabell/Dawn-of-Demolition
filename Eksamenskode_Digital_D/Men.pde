@@ -35,4 +35,7 @@ class Men extends GameObject {
       y = 0;
     }
   }
+  boolean hasDied () {
+    return y > height || x > width || y < -20 || x < -20;
+  }
 }
