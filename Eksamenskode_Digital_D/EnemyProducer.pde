@@ -13,6 +13,7 @@ class EnemyProducer extends GameObject {
  }
  
  void act() {
+ loop();
  if (frameCount < 100) {
  //gør ingenting
  } else if (frameCount < 600) {
@@ -27,14 +28,14 @@ class EnemyProducer extends GameObject {
  
  void straightLine(float incX) {
  x = incX;
- if (frameCount % 200 == 0) { 
+ if (frameCount % 100 == 0) { 
  myEnemy = new Enemy(random(140, 590), 850);
  engine.add(myEnemy);
  }
  }
  void randomWave() {
  x = random(140, 590);
- if (frameCount %200 == 0) {
+ if (frameCount %100 == 0) {
  myEnemy = new Enemy(random(140, 590), 850);
  engine.add(myEnemy);
  }

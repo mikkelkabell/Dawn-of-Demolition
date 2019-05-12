@@ -15,6 +15,7 @@ class Enemy extends GameObject {
   void act () {
     x = x + dx;
     y = y + dy;
+   
   }
 
   boolean hasDied () {

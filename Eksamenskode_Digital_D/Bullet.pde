@@ -1,28 +1,28 @@
 class Bullet extends GameObject {
 
   Archer myArcher;
-  
-  Bullet(Archer archer) {
-    myArcher = archer;
-    x = myArcher.x;
-    y = myArcher.y;
-    dx = 0;
-    dy = -9;
+  PVector acc, vel, loc, dire;
+
+  Bullet(float incX, float incY, float incDX, float incDY) {
+    loc = new PVector(incX, incY);
+    vel = new PVector(incDX, incDY);
     hp = 1;
   }
   void show () {
     fill (223, 139, 10);
-    rect (x, y, 6, 6);
+    rect (loc.x, loc.y, 6, 6);
   }
+
   void act () {
-    x = x+dx;
-    y = y+dy;
+    vel.setMag(2);
+    loc.x += vel.x;
+    loc.y += vel.y;
   }
 
   boolean hasDied () {
     return y > height || x > width || y < -20 || x < -20;
   }
-  
+
   /*
    void shoot() {
    if (cd == th) {

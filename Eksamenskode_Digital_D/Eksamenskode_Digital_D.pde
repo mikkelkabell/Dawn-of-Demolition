@@ -5,7 +5,8 @@ PFont title;
 String gameState;
 Men myMen;
 Enemy myEnemy;
-//Archer myArcher ;//= new Archer();
+Bullet bullets;
+Archer myArcher ;//= new Archer();
 boolean pressed = false;
 float x, y, th, cd;
 
@@ -26,13 +27,11 @@ public void setup() {
   engine = new ArrayList<GameObject>(10000); //mængde af memory
   stage = 1;
   startscreen = loadImage("StartB.jpg");
-  image(startscreen, 0, 0, 750, 850);
   title = createFont("Lobster.otf", 32);
   myEnemy = new Enemy(random(140, 590), 400);
   engine.add(myEnemy);
   engine.add(new EnemyProducer());
-  //engine.add(Bullet);
-  //engine.add(new Bullet());
+
   
 }
 
@@ -53,6 +52,7 @@ public void draw() {
 
 void homeScreen() {
   if (stage==1) {
+    image(startscreen, 0, 0, 750, 850);
     textAlign(CENTER); 
     textSize(50);
     textFont(title);
@@ -92,6 +92,7 @@ void inGame () {
     GameObject obj = engine.get(i);
     obj.show();
     obj.act();
+    
     if (obj.hasDied()) {
       engine.remove(i);
     }
