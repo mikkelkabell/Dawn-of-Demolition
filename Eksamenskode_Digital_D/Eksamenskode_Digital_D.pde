@@ -31,8 +31,6 @@ public void setup() {
   myEnemy = new Enemy(random(140, 590), 400);
   engine.add(myEnemy);
   engine.add(new EnemyProducer());
-
-  
 }
 
 public void draw() {
@@ -74,49 +72,48 @@ void inGame () {
   image(Bow, 650, 570, 40, 40);
   image(Shield, 650, 490, 40, 38);
   if (mousePressed) {
-    if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) { // (cd == th) {
-      engine.add(new Soldier(random(140, 590), 0, 1, 1));
-      cd = 0;
-    }
-  if (mouseX>650 && mouseX<690 && mouseY>570 && mouseY<610) {
-      engine.add(new Archer(random(140, 590), 0,1,1));
-      cd = 0;
-    }
-  if (mouseX>650 && mouseX<690 && mouseY>490 && mouseY<530) {
-      engine.add(new Knight(random(140, 590), 0, 1, 1));
-      cd = 0;
+    if (frameCount % 5 == 0) {
+      if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) { // (cd == th) {
+        engine.add(new Soldier(random(140, 590), 0, 0,0));
+      }
+      if (mouseX>650 && mouseX<690 && mouseY>570 && mouseY<610) {
+        engine.add(new Archer(random(140, 590), 0,0,0));
+      }
+      if (mouseX>650 && mouseX<690 && mouseY>490 && mouseY<530) {
+        engine.add(new Knight(random(140, 590), 0, 0,0));
+      }
     }
   }
+
   int i = engine.size()-1;
   while (i >=0) {
     GameObject obj = engine.get(i);
     obj.show();
     obj.act();
-    
     if (obj.hasDied()) {
       engine.remove(i);
     }
     i--;
   }
- /*if (Enemy.hp == 0) {
-    gameState = "wonGame";
-  } else if (Men.hp == 0) {
-    gameState = "loseGame";
-  }*/
+  /*if (Enemy.hp == 0) {
+   gameState = "wonGame";
+   } else if (Men.hp == 0) {
+   gameState = "loseGame";
+   }*/
 }
 
 void wonGame () {
   image(YouWin, 0, 0, 750, 850);
-  
+
   if (mousePressed == true) {
-      gameState = "HomeScreen";
+    gameState = "HomeScreen";
   }
 }
 
 void loseGame () {
   image(GOver, 0, 0, 750, 850);
-  
+
   if (mousePressed == true) {
-      gameState = "HomeScreen";
+    gameState = "HomeScreen";
   }
 }

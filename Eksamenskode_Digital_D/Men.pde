@@ -23,8 +23,8 @@ class Men extends GameObject {
   }
 
   void act() {
-    x = x + fdX;
-    y = y + fdY;
+    x = x - fdX;
+    y = y - fdY;
     if (mousePressed) {
       incX = mouseX;
       incY = mouseY;
@@ -36,18 +36,7 @@ class Men extends GameObject {
       x = 0;
       y = 0;
     }
-    
-   for (int i = 0; i < engine.size(); i++){
-   GameObject num = engine.get(i);
-      if (num instanceof Enemy) {
-        float ToEnemy = dist(num.x, x, num.y, y);
-        if (ToEnemy < closest) {
-          closest = ToEnemy;
-          eX = num.x;
-          eY = num.y;
-        }
-      }
-   }
+   
    
    
   }

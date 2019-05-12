@@ -22,20 +22,4 @@ class Bullet extends GameObject {
   boolean hasDied () {
     return y > height || x > width || y < -20 || x < -20;
   }
-
-  /*
-   void shoot() {
-   if (cd == th) {
-   engine.add(new Bullet());
-   cd = 0;
-   }
-   }
-   
-   void recharge() {
-   if (cd < th) {
-   cd++;
-   }
-   }
-   }
-   */
 }

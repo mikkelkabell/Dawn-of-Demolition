@@ -6,10 +6,8 @@ class Archer extends Men { //<>// //<>//
   float y;
   float vX;
   float vY;  
-  float incX, incY = 0;
+  float incX, incY;
   float fdX, fdY;
-  float list;
-  // float th, cd; // Threshold, Cooldown
 
   Archer(float incX, float incY, float vX, float vY) {
     super(incX, incY, vX, vY);
@@ -20,8 +18,8 @@ class Archer extends Men { //<>// //<>//
     image(BowS, x, y, 20, 20);
   }
   void act() {
-    x = x + fdX;
-    y = y + fdY;
+    x = x - fdX;
+    y = y - fdY;
     if (mousePressed) {
       incX = mouseX;
       incY = mouseY;
@@ -33,30 +31,33 @@ class Archer extends Men { //<>// //<>//
       x = 0;
       y = 0;
     }
-  }
-  {
+
+    {
 
 
-    //  println("Afstand:" + dist(myEnemy.x, myEnemy.y, x, y));
+      println("Afstand:" + dist(eX, eY, x, y));
 
-    // int l = engine.size();
-    for (int i = 0; i < engine.size(); i++) {
-      GameObject num = engine.get(i);
-      if (num instanceof Enemy) {
-        float ToEnemy = dist(num.x, x, num.y, y);
-        if (ToEnemy < closest) {
-          closest = ToEnemy;
-          eX = num.x;
-          eY = num.y;
+      // int l = engine.size();
+      for (int i = 0; i < engine.size(); i++) {
+        GameObject num = engine.get(i);
+        if (num instanceof Enemy) {
+          float ToEnemy = dist(num.x, x, num.y, y);
+          if (ToEnemy < closest) {
+            closest = ToEnemy;
+            eX = num.x;
+            eY = num.y;
+          }
         }
       }
-    }
 
-    if (frameCount % 100 == 0) {
-      angle = atan2(eY-y, eX-x);
-      fdX = cos(angle) * 2;
-      fdY = sin(angle) * 2;
-      engine.add(new Bullet(x, y, fdX, fdY));
+      if (closest < 150) {
+        if (frameCount % 50 == 0) {
+          angle = atan2(eX-this.x, eY-this.y);
+          fdX = cos(angle) * 2;
+          fdY = sin(angle) * 2;
+          engine.add(new Bullet(x, y, fdX, fdY));
+        }
+      }
     }
   }
   boolean hasDied () {
