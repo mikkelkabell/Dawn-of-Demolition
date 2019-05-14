@@ -1,4 +1,4 @@
-class Enemy extends GameObject {
+class Enemy extends GameObject { //<>//
 
   float closest = 10000;
   float eX, eY;
@@ -8,7 +8,7 @@ class Enemy extends GameObject {
 
 
   Enemy(float incX, float incY) {
-    hp = 1;
+    hp = 2;
     x = incX;
     y = incY;
     dx = 0;
@@ -23,20 +23,17 @@ class Enemy extends GameObject {
     y = y + dy;
 
 
-    
-    for(GameObject e : engine){
-     if(e instanceof Bullet){
-       Bullet b = (Bullet)e;
-           float L = dist(this.x, this.y, b.loc.x, b.loc.y);
-    if (L < 20) {
-      hp--;
-      this.x = this.x + 1000;
-     }
-      
+
+    for (GameObject e : engine) {
+      if (e instanceof Bullet) {
+        Bullet b = (Bullet)e;
+        float L = dist(this.x, this.y, b.loc.x, b.loc.y);
+        if (L < this.radius+b.radius) {
+          this.hp--;
+          b.hp --;
+        }
+      }
     }
-    
-    }
-     //<>//
   }
   boolean hasDied () {
     return y > height || x > width || y < -20 || x < -20 || hp <= 0;

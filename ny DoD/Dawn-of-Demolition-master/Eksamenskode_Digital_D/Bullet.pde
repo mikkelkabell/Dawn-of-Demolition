@@ -11,7 +11,7 @@ class Bullet extends GameObject {
     radius = 6;
   }
   void show () {
-    fill (223, 139, 10);
+    fill (255);
     ellipse (loc.x, loc.y, 2*radius, 2*radius);
   }
 

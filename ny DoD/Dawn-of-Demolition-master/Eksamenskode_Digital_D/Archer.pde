@@ -10,11 +10,13 @@ class Archer extends Men { //<>// //<>//
   float vY;  
   float incX, incY;
   float fdX, fdY;
+  float radius;
 
 
   Archer(float incX, float incY, float vX, float vY) {
     super(incX, incY, vX, vY);
-    hp = 7;
+    hp = 2;
+    radius =10;
   }
 
   void show() {
@@ -36,11 +38,6 @@ class Archer extends Men { //<>// //<>//
       fdY = 0;
       fdX = 0;
     }
-
-    println("Afstand:" + dist(eX, eY, x, y));
-    println(x, y);
-
-
     closest = 100000;
 
     for (int i = 0; i < engine.size(); i++) {
@@ -51,27 +48,16 @@ class Archer extends Men { //<>// //<>//
           closest = ToEnemy;
           eX = num.x;
           eY = num.y;
-        
         }
       }
     }
-    eX = eX +20; eY = eY + 20;
-    fill(255,0,0);
-    ellipse(eX,eY,10,10);
-    
-  
-
-    if (closest < 100) {
-      if (frameCount % 100 == 0) {
+    eX = eX +20; eY = eY + 20;  
+    if (closest < 150) {
+      if (frameCount % 80 == 0) {
         arrowVelocity.set(eX-x,eY-y);
         arrowVelocity.normalize();
-        arrowVelocity.mult(50);
-        //angle = atan2(eX-this.x, eY-this.y);
-        //vX = cos(angle) * 2;
-        //vY = sin(angle) * 2;
-        //engine.add(new Bullet(x, y, vX, vY));
-         
-         engine.add(new Bullet(x, y, arrowVelocity.x, arrowVelocity.y));
+        arrowVelocity.mult(50); 
+        engine.add(new Bullet(x, y, arrowVelocity.x, arrowVelocity.y));
 
       }
     }
