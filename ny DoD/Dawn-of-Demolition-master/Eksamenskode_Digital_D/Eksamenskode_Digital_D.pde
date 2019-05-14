@@ -97,12 +97,13 @@ void inGame () {
     }
     i--;
   }
+
+  /*  if (myEnemy.hp == 0) {
+   gameState = "wonGame";
+   } else if (myMen.hp == 0) {
+   gameState = "loseGame";
+   }*/
 }
-/*if (Enemy.hp == 0) {
- gameState = "wonGame";
- } else if (Men.hp == 0) {
- gameState = "loseGame";
- }*/
 
 
 void wonGame () {
