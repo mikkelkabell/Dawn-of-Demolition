@@ -23,24 +23,32 @@ class Men extends GameObject {
   }
 
   void act() {
-    x = x - fdX;
-    y = y - fdY;
-    if (mousePressed) {
-      incX = mouseX;
-      incY = mouseY;
-      angle = atan2(incY-y, incX-x);
-      fdX = cos(angle) * 2;
-      fdY = sin(angle) * 2;
-    }
-    if (incX == x && incY == y) {
-      x = 0;
-      y = 0;
-    }
-   
-   
-   
+    
+    
+    
+    
+    
+    
+    
+    if(bullets == null)return;
+    
+    
+    
+    
+    float L = dist(eX, eY, bullets.x, bullets.y);
+    
+    println("L AFSTAND ER " + L);
+    if (L < myEnemy.radius+bullets.radius) {
+      myEnemy.hp = 0;
+      bullets.hp = 0;
+      x= x +1000;  
+  
+  }
+    
+    
+    
   }
   boolean hasDied () {
-    return y > height || x > width || y < -20 || x < -20;
+    return y > height || x > width || y < -20 || x < -20 || hp <= 0;
   }
 }

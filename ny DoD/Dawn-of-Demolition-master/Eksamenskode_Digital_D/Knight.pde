@@ -11,13 +11,13 @@ class Knight extends Men {
 
   Knight(float incX, float incY, float vX, float vY) {
     super(incX, incY, vX, vY);
-    hp = 15;
+    hp = 5;
   }
 
   void show() {
-   image(ShieldSH, x, y, 20, 20);
+    image(ShieldSH, x, y, 20, 20);
   }
-   void act() {
+  void act() {
     x = x + fdX;
     y = y + fdY;
     if (mousePressed) {
@@ -31,8 +31,8 @@ class Knight extends Men {
       x = 0;
       y = 0;
     }
-}
-    boolean hasDied () {
-      return y > height || x > width || y < -20 || x < -20;
-    }
+  }
+  boolean hasDied () {
+    return y > height || x > width || y < -20 || x < -20 || hp <= 0;
+  }
 }

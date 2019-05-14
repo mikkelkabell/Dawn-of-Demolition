@@ -31,6 +31,8 @@ public void setup() {
   myEnemy = new Enemy(random(140, 590), 400);
   engine.add(myEnemy);
   engine.add(new EnemyProducer());
+  rectMode(CENTER);
+  ellipseMode(CENTER);
 }
 
 public void draw() {
@@ -74,13 +76,13 @@ void inGame () {
   if (mousePressed) {
     if (frameCount % 5 == 0) {
       if (mouseX>650 && mouseX<690 && mouseY>650 && mouseY<730) { // (cd == th) {
-        engine.add(new Soldier(random(140, 590), 0, 0,0));
+        engine.add(new Soldier(random(140, 590), 0, 0, 0));
       }
       if (mouseX>650 && mouseX<690 && mouseY>570 && mouseY<610) {
-        engine.add(new Archer(random(140, 590), 0,0,0));
+        engine.add(new Archer(random(140, 590), 0, 0, 0));
       }
       if (mouseX>650 && mouseX<690 && mouseY>490 && mouseY<530) {
-        engine.add(new Knight(random(140, 590), 0, 0,0));
+        engine.add(new Knight(random(140, 590), 0, 0, 0));
       }
     }
   }
@@ -95,12 +97,13 @@ void inGame () {
     }
     i--;
   }
-  /*if (Enemy.hp == 0) {
-   gameState = "wonGame";
-   } else if (Men.hp == 0) {
-   gameState = "loseGame";
-   }*/
 }
+/*if (Enemy.hp == 0) {
+ gameState = "wonGame";
+ } else if (Men.hp == 0) {
+ gameState = "loseGame";
+ }*/
+
 
 void wonGame () {
   image(YouWin, 0, 0, 750, 850);

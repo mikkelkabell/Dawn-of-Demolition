@@ -1,5 +1,7 @@
 class Archer extends Men { //<>// //<>//
 
+ PVector arrowVelocity = new PVector();
+
   float angle;
   float dX, dY;
   float x;
@@ -19,6 +21,7 @@ class Archer extends Men { //<>// //<>//
     image(BowS, x, y, 20, 20);
   }
   void act() {
+    super.act();
     x = x + fdX;
     y = y + fdY;
     if (mousePressed) {
@@ -37,7 +40,9 @@ class Archer extends Men { //<>// //<>//
     println("Afstand:" + dist(eX, eY, x, y));
     println(x, y);
 
-    // int l = engine.size();
+
+    closest = 100000;
+
     for (int i = 0; i < engine.size(); i++) {
       GameObject num = engine.get(i);
       if (num instanceof Enemy) {
@@ -46,20 +51,33 @@ class Archer extends Men { //<>// //<>//
           closest = ToEnemy;
           eX = num.x;
           eY = num.y;
+        
         }
       }
     }
+    eX = eX +20; eY = eY + 20;
+    fill(255,0,0);
+    ellipse(eX,eY,10,10);
+    
+  
 
-    if (closest < 150) {
-      if (frameCount % 50 == 0) {
-        angle = atan2(eX-this.x, eY-this.y);
-        vX = cos(angle) * 2;
-        vY = sin(angle) * 2;
-        engine.add(new Bullet(x, y, vX, vY));
+    if (closest < 100) {
+      if (frameCount % 100 == 0) {
+        arrowVelocity.set(eX-x,eY-y);
+        arrowVelocity.normalize();
+        arrowVelocity.mult(50);
+        //angle = atan2(eX-this.x, eY-this.y);
+        //vX = cos(angle) * 2;
+        //vY = sin(angle) * 2;
+        //engine.add(new Bullet(x, y, vX, vY));
+         
+         engine.add(new Bullet(x, y, arrowVelocity.x, arrowVelocity.y));
+
       }
     }
   }
-}
-boolean hasDied () {
-  return y > height || x > width || y < -20 || x < -20;
+
+  boolean hasDied () {
+    return y > height || x > width || y < -20 || x < -20 || hp <= 0;
+  }
 }

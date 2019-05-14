@@ -33,6 +33,6 @@ class Soldier extends Men {
     }
   }
   boolean hasDied () {
-    return y > height || x > width || y < -20 || x < -20;
+    return y > height || x > width || y < -20 || x < -20 || hp <= 0;
   }
 }
